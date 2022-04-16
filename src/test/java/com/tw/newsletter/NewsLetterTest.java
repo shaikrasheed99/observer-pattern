@@ -37,4 +37,21 @@ public class NewsLetterTest {
 
         verify(mockedPoliticalLeader, times(1)).notification();
     }
+
+    @Test
+    void shouldAbleToNotifyAllKindOfSubscribers() {
+        NewsLetter newsLetter = new NewsLetter();
+        Student mockedStudent = mock(Student.class);
+        SoftwareDeveloper mockedSoftwareDeveloper = mock(SoftwareDeveloper.class);
+        PoliticalLeader mockedPoliticalLeader = mock(PoliticalLeader.class);
+
+        newsLetter.subscribe(mockedStudent);
+        newsLetter.subscribe(mockedSoftwareDeveloper);
+        newsLetter.subscribe(mockedPoliticalLeader);
+        newsLetter.sendNotifications();
+
+        verify(mockedStudent, times(1)).notification();
+        verify(mockedSoftwareDeveloper, times(1)).notification();
+        verify(mockedPoliticalLeader, times(1)).notification();
+    }
 }
