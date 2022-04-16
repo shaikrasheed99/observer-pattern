@@ -15,4 +15,15 @@ public class NewsLetterTest {
 
         verify(mockedStudent, times(1)).notification();
     }
+
+    @Test
+    void shouldAbleToNotifySoftwareDeveloperWHenHeIsSubscribed() {
+        NewsLetter newsLetter = new NewsLetter();
+        SoftwareDeveloper mockedSoftwareDeveloper = mock(SoftwareDeveloper.class);
+
+        newsLetter.subscribe(mockedSoftwareDeveloper);
+        newsLetter.sendNotifications();
+
+        verify(mockedSoftwareDeveloper, times(1)).notification();
+    }
 }
