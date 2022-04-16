@@ -3,6 +3,7 @@ package com.tw.youtube;
 import com.tw.SoftwareDeveloper;
 import com.tw.Student;
 import com.tw.exceptions.SubscriberAlreadyExist;
+import com.tw.exceptions.SubscriberDoesNotExist;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -32,5 +33,13 @@ public class ChannelTest {
         channel.subscribe(mockedStudent);
 
         assertThrows(SubscriberAlreadyExist.class, () -> channel.subscribe(mockedStudent));
+    }
+
+    @Test
+    void shouldNotUnsubscribeUserWhenHeIsNotSubscribed() {
+        Channel channel = new Channel();
+        Student mockedStudent = mock(Student.class);
+
+        assertThrows(SubscriberDoesNotExist.class, () -> channel.unsubscribe(mockedStudent));
     }
 }
