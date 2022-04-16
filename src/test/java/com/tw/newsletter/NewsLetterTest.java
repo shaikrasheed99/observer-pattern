@@ -54,4 +54,20 @@ public class NewsLetterTest {
         verify(mockedSoftwareDeveloper, times(1)).notification();
         verify(mockedPoliticalLeader, times(1)).notification();
     }
+
+    @Test
+    void shouldNotNotifyStudentWhenHeIsUnsubscribed() {
+        NewsLetter newsLetter = new NewsLetter();
+        Student mockedStudent = mock(Student.class);
+        SoftwareDeveloper mockedSoftwareDeveloper = mock(SoftwareDeveloper.class);
+
+        newsLetter.subscribe(mockedStudent);
+        newsLetter.subscribe(mockedSoftwareDeveloper);
+        newsLetter.sendNotifications();
+        newsLetter.unsubscribe(mockedStudent);
+        newsLetter.sendNotifications();
+
+        verify(mockedStudent, times(1)).notification();
+        verify(mockedSoftwareDeveloper, times(2)).notification();
+    }
 }
