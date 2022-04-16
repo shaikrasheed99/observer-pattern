@@ -1,7 +1,9 @@
 package com.tw.newsletter;
 
-import com.tw.newsletter.exceptions.SubscriberAlreadyExist;
-import com.tw.newsletter.exceptions.SubscriberDoesNotExist;
+import com.tw.IPublisher;
+import com.tw.ISubscriber;
+import com.tw.exceptions.SubscriberAlreadyExist;
+import com.tw.exceptions.SubscriberDoesNotExist;
 
 import java.util.ArrayList;
 import java.util.List;

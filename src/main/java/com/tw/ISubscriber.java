@@ -1,4 +1,4 @@
-package com.tw.newsletter;
+package com.tw;
 
 public interface ISubscriber {
     void notification();

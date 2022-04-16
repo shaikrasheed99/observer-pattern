@@ -1,7 +1,7 @@
-package com.tw.newsletter;
+package com.tw;
 
-import com.tw.newsletter.exceptions.SubscriberAlreadyExist;
-import com.tw.newsletter.exceptions.SubscriberDoesNotExist;
+import com.tw.exceptions.SubscriberAlreadyExist;
+import com.tw.exceptions.SubscriberDoesNotExist;
 
 public interface IPublisher {
     void subscribe(ISubscriber subscriber) throws SubscriberAlreadyExist;

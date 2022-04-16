@@ -1,4 +1,4 @@
-package com.tw.newsletter.exceptions;
+package com.tw.exceptions;
 
 public class SubscriberAlreadyExist extends Exception {
 }

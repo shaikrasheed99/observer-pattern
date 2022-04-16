@@ -1,7 +1,10 @@
 package com.tw.newsletter;
 
-import com.tw.newsletter.exceptions.SubscriberAlreadyExist;
-import com.tw.newsletter.exceptions.SubscriberDoesNotExist;
+import com.tw.PoliticalLeader;
+import com.tw.SoftwareDeveloper;
+import com.tw.Student;
+import com.tw.exceptions.SubscriberAlreadyExist;
+import com.tw.exceptions.SubscriberDoesNotExist;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

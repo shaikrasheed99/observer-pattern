@@ -1,4 +1,4 @@
-package com.tw.newsletter;
+package com.tw;
 
 public class SoftwareDeveloper implements ISubscriber {
     @Override
