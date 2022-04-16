@@ -26,4 +26,15 @@ public class NewsLetterTest {
 
         verify(mockedSoftwareDeveloper, times(1)).notification();
     }
+
+    @Test
+    void shouldAbleToNotifyPoliticalLeaderWhenHeIsSubscribed() {
+        NewsLetter newsLetter = new NewsLetter();
+        PoliticalLeader mockedPoliticalLeader = mock(PoliticalLeader.class);
+
+        newsLetter.subscribe(mockedPoliticalLeader);
+        newsLetter.sendNotifications();
+
+        verify(mockedPoliticalLeader, times(1)).notification();
+    }
 }
