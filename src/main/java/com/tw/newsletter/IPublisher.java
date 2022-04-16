@@ -1,9 +1,10 @@
 package com.tw.newsletter;
 
-import com.tw.newsletter.exceptions.SubscriberAlreadyExists;
+import com.tw.newsletter.exceptions.SubscriberAlreadyExist;
+import com.tw.newsletter.exceptions.SubscriberDoesNotExist;
 
 public interface IPublisher {
-    void subscribe(ISubscriber observer) throws SubscriberAlreadyExists;
-    void unsubscribe(ISubscriber observer);
+    void subscribe(ISubscriber observer) throws SubscriberAlreadyExist;
+    void unsubscribe(ISubscriber observer) throws SubscriberDoesNotExist;
     void sendNotifications();
 }
