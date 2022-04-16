@@ -2,6 +2,7 @@ package com.tw.youtube;
 
 import com.tw.IPublisher;
 import com.tw.ISubscriber;
+import com.tw.exceptions.SubscriberAlreadyExist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,8 @@ public class Channel implements IPublisher {
     }
 
     @Override
-    public void subscribe(ISubscriber subscriber) {
+    public void subscribe(ISubscriber subscriber) throws SubscriberAlreadyExist {
+        if (subscribers.contains(subscriber)) throw new SubscriberAlreadyExist();
         subscribers.add(subscriber);
     }
 

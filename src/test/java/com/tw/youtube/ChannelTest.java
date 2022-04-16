@@ -2,13 +2,15 @@ package com.tw.youtube;
 
 import com.tw.SoftwareDeveloper;
 import com.tw.Student;
+import com.tw.exceptions.SubscriberAlreadyExist;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class ChannelTest {
     @Test
-    void shouldAbleToNotifySubscribersWhenNewVideoIsUploaded() {
+    void shouldAbleToNotifySubscribersWhenNewVideoIsUploaded() throws SubscriberAlreadyExist {
         Channel channel = new Channel();
         Student mockedStudent = mock(Student.class);
         SoftwareDeveloper mockedSoftwareDeveloper = mock(SoftwareDeveloper.class);
@@ -20,5 +22,15 @@ public class ChannelTest {
 
         verify(mockedStudent, times(1)).notification();
         verify(mockedSoftwareDeveloper, times(1)).notification();
+    }
+
+    @Test
+    void shouldNotLetSubscriberToSubscribeAgainWhenHeAlreadySubscribed() throws SubscriberAlreadyExist {
+        Channel channel = new Channel();
+        Student mockedStudent = mock(Student.class);
+
+        channel.subscribe(mockedStudent);
+
+        assertThrows(SubscriberAlreadyExist.class, () -> channel.subscribe(mockedStudent));
     }
 }
