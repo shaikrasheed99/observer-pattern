@@ -15,18 +15,22 @@ public class NewsLetter implements IPublisher {
 
     @Override
     public void subscribe(ISubscriber subscriber) throws SubscriberAlreadyExist {
-        if (subscribers.contains(subscriber)) throw new SubscriberAlreadyExist();
+        if (isExist(subscriber)) throw new SubscriberAlreadyExist();
         subscribers.add(subscriber);
     }
 
     @Override
     public void unsubscribe(ISubscriber subscriber) throws SubscriberDoesNotExist {
-        if (!subscribers.contains(subscriber)) throw new SubscriberDoesNotExist();
+        if (!isExist(subscriber)) throw new SubscriberDoesNotExist();
         subscribers.remove(subscriber);
     }
 
     @Override
     public void sendNotifications() {
         subscribers.forEach(ISubscriber::notification);
+    }
+
+    private boolean isExist(ISubscriber subscriber) {
+        return subscribers.contains(subscriber);
     }
 }
