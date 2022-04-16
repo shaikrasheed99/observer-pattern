@@ -1,5 +1,7 @@
 package com.tw.newsletter;
 
+import com.tw.newsletter.exceptions.SubscriberAlreadyExists;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,8 @@ public class NewsLetter implements IPublisher {
     }
 
     @Override
-    public void subscribe(ISubscriber subscriber) {
+    public void subscribe(ISubscriber subscriber) throws SubscriberAlreadyExists {
+        if (subscribers.contains(subscriber)) throw new SubscriberAlreadyExists();
         subscribers.add(subscriber);
     }
 

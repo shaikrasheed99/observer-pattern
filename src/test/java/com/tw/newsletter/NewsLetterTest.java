@@ -1,12 +1,14 @@
 package com.tw.newsletter;
 
+import com.tw.newsletter.exceptions.SubscriberAlreadyExists;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class NewsLetterTest {
     @Test
-    void shouldAbleToNotifyStudentWhenHeIsSubscribed() {
+    void shouldAbleToNotifyStudentWhenHeIsSubscribed() throws SubscriberAlreadyExists {
         NewsLetter newsLetter = new NewsLetter();
         Student mockedStudent = mock(Student.class);
 
@@ -17,7 +19,7 @@ public class NewsLetterTest {
     }
 
     @Test
-    void shouldAbleToNotifySoftwareDeveloperWHenHeIsSubscribed() {
+    void shouldAbleToNotifySoftwareDeveloperWHenHeIsSubscribed() throws SubscriberAlreadyExists {
         NewsLetter newsLetter = new NewsLetter();
         SoftwareDeveloper mockedSoftwareDeveloper = mock(SoftwareDeveloper.class);
 
@@ -28,7 +30,7 @@ public class NewsLetterTest {
     }
 
     @Test
-    void shouldAbleToNotifyPoliticalLeaderWhenHeIsSubscribed() {
+    void shouldAbleToNotifyPoliticalLeaderWhenHeIsSubscribed() throws SubscriberAlreadyExists {
         NewsLetter newsLetter = new NewsLetter();
         PoliticalLeader mockedPoliticalLeader = mock(PoliticalLeader.class);
 
@@ -39,7 +41,7 @@ public class NewsLetterTest {
     }
 
     @Test
-    void shouldAbleToNotifyAllKindOfSubscribers() {
+    void shouldAbleToNotifyAllKindOfSubscribers() throws SubscriberAlreadyExists {
         NewsLetter newsLetter = new NewsLetter();
         Student mockedStudent = mock(Student.class);
         SoftwareDeveloper mockedSoftwareDeveloper = mock(SoftwareDeveloper.class);
@@ -56,7 +58,7 @@ public class NewsLetterTest {
     }
 
     @Test
-    void shouldNotNotifyStudentWhenHeIsUnsubscribed() {
+    void shouldNotNotifyStudentWhenHeIsUnsubscribed() throws SubscriberAlreadyExists {
         NewsLetter newsLetter = new NewsLetter();
         Student mockedStudent = mock(Student.class);
         SoftwareDeveloper mockedSoftwareDeveloper = mock(SoftwareDeveloper.class);
@@ -69,5 +71,15 @@ public class NewsLetterTest {
 
         verify(mockedStudent, times(1)).notification();
         verify(mockedSoftwareDeveloper, times(2)).notification();
+    }
+
+    @Test
+    void shouldAbleToSubscribeOnlyOnceWhenSubscriberTryToSubscribeMultipleTimes() throws SubscriberAlreadyExists {
+        NewsLetter newsLetter = new NewsLetter();
+        Student mockedStudent = mock(Student.class);
+
+        newsLetter.subscribe(mockedStudent);
+
+        assertThrows(SubscriberAlreadyExists.class, () -> newsLetter.subscribe(mockedStudent));
     }
 }
