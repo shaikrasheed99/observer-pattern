@@ -11,13 +11,13 @@ public class NewsLetter implements IPublisher {
     }
 
     @Override
-    public void subscribe(ISubscriber observer) {
-        subscribers.add(observer);
+    public void subscribe(ISubscriber subscriber) {
+        subscribers.add(subscriber);
     }
 
     @Override
-    public void unsubscribe(ISubscriber observer) {
-        subscribers.remove(observer);
+    public void unsubscribe(ISubscriber subscriber) {
+        subscribers.remove(subscriber);
     }
 
     @Override
